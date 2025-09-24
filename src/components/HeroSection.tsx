@@ -19,40 +19,40 @@ const HeroSection: React.FC = () => {
       image: "/image/download.jpg",
     },
     "/list-mobil": {
-      title: "Jelajahi Koleksi Mobil Kami",
+      title: "Tipe Mobil",
       description:
         "Pilih dari berbagai model mobil Geely yang sesuai dengan gaya hidup Anda.",
-      image: "",
+      image: "/image/image-5.jpg",
     },
     "/test-drive": {
       title: "Rasakan Sensasi Test Drive",
       description:
         "Jadwalkan test drive dan alami performa luar biasa dari mobil Geely.",
-      image: "",
+      image: "/image/interior-6.jpg",
     },
     "/simulasi-kredit": {
       title: "Simulasi Kredit Mudah",
       description:
         "Hitung cicilan bulanan Anda dengan alat simulasi kredit kami yang praktis.",
-      image: "",
+      image: "/image/interior-1.jpg",
     },
     "/booking-service": {
       title: "Booking Service Online",
       description:
         "Pesan layanan servis untuk mobil Geely Anda dengan mudah dan cepat.",
-      image: "",
+      image: "/image/interior-3.jpg",
     },
     "/testimoni": {
       title: "Apa Kata Pelanggan Kami",
       description:
         "Baca testimoni dari pelanggan yang puas dengan mobil dan layanan Geely.",
-      image: "",
+      image: "/image/interior-3.jpg",
     },
     "/kontak": {
       title: "Hubungi Kami",
       description:
         "Kami siap membantu Anda. Hubungi kami untuk informasi lebih lanjut.",
-      image: "",
+      image: "/image/interior-4.jpg",
     },
   };
 

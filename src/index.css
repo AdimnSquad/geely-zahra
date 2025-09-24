@@ -62,4 +62,10 @@
 .whatsapp-float:hover .icon {
   background: #20b358;
 }
+.img-fixed {
+    width: 100%;
+    height: 300px;        /* atur tinggi sesuai selera, misal 250px atau 300px */
+    object-fit: cover;    /* crop gambar biar proporsional */
+    object-position: center;
+  }
 
