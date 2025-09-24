@@ -6,6 +6,7 @@ import TestDrive from "./pages/TestDrive";
 import SimulasiKredit from "./pages/SimulasiKredit";
 import Testimoni from "./pages/Testimoni";
 import Booking from "./pages/Booking";
+import Kontak from "./pages/Kontak";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppFloat from "./components/WhatsAppFloat";
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         <Route path="/simulasi-kredit" element={<SimulasiKredit />} />
         <Route path="/booking-service" element={<Booking />} />
         <Route path="/testimoni" element={<Testimoni />} />
+        <Route path="/kontak" element={<Kontak />} />
       </Routes>
       <Footer />
       <WhatsAppFloat />
