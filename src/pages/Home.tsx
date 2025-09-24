@@ -1,5 +1,6 @@
 import React from "react";
 import HeroSection from "../components/HeroSection";
+import SectionFooterImage from "../components/SectionFooterImage";
 
 const Home: React.FC = () => {
   return (
@@ -134,6 +135,81 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* New Model section */}
+      <section className="bg-light py-5">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-6">
+              <h1 className="display-4 fw-bold">Geely Andalan Opening Soon</h1>
+              <p className="lead my-4">Prebook Price 499.800.000</p>
+            </div>
+            <div className="col-lg-6 text-center mt-4 mt-lg-0">
+              <img
+                src="/image/Geely-Andalan-Coming-Soon-1-1.jpg"
+                alt="Geely Hero Banner"
+                className="img-fluid rounded-3 shadow"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimoni Section */}
+      <section className="container mt-5 mb-5">
+        <div className="row align-items-center">
+          <h2 className="text-center mb-5">Galery Testimoni</h2>
+          <div className="col-lg-3 gap-3">
+            <img
+              src="https://geelyandalan.co.id/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-25-at-11.16.28-600x800.jpeg"
+              alt=""
+              className="img-fluid rounded-3 shadow"
+            />
+          </div>
+          <div className="col-lg-3 gap-3">
+            <img
+              src="https://geelyandalan.co.id/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-25-at-11.16.28-600x800.jpeg"
+              alt=""
+              className="img-fluid rounded-3 shadow"
+            />
+          </div>
+          <div className="col-lg-3 gap-3">
+            <img
+              src="https://geelyandalan.co.id/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-25-at-11.16.28-600x800.jpeg"
+              alt=""
+              className="img-fluid rounded-3 shadow"
+            />
+          </div>
+          <div className="col-lg-3 gap-3">
+            <img
+              src="https://geelyandalan.co.id/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-25-at-11.16.28-600x800.jpeg"
+              alt=""
+              className="img-fluid rounded-3 shadow"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Video Section */}
+      <section className="container my-5">
+        <div className="row justify-content-center">
+          <div className="col-12 text-center mb-4">
+            <h2 className="fw-bold">Video</h2>
+          </div>
+          <div className="col-lg-8">
+            <div className="ratio ratio-16x9 shadow rounded-3">
+              <iframe
+                src="https://www.youtube.com/embed/UhpHXpBRrEU"
+                title="Built for Safety: Geely EX5 Faces Extreme Safety Trials"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen={true}
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionFooterImage />
     </main>
   );
 };
