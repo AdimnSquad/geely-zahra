@@ -7,7 +7,7 @@ const SimulasiKredit: React.FC = () => {
     <>
       <HeroSection />
       <section className="py-5">
-        <div className="conatiner">
+        <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-12">
               <div className="card">
