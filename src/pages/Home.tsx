@@ -1,14 +1,27 @@
 import React from "react";
 import HeroSection from "../components/HeroSection";
 import SectionFooterImage from "../components/SectionFooterImage";
+import { useScrollFadeFallback } from "../hook/useScrollFade";
+import { Helmet } from "react-helmet-async";
 
 const Home: React.FC = () => {
+
+  const produkSection = useScrollFadeFallback();
+  const layananSection = useScrollFadeFallback();
   return (
     <main>
+      {/* Meta Data */}
+      <Helmet>
+        <title>Geely Andalan - Home</title>
+        <meta name="description" content="Temukan mobil impian Anda dengan teknologi canggih dan desain modern dari Geely" />
+        <meta name="keywords" content="Geely, Mobil, SUV, Harga Mobil 2025, Dealer Geely" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://namadomain.com/" />
+      </Helmet>
       {/* Section Hero */}
       <HeroSection />
       {/* Produk & Swatches section */}
-      <section className="bg-light py-5">
+      <section ref={produkSection.ref} className={`bg-light py-5 ${produkSection.isVisible ? "fade-in" : "fade-out"}`}>
         <div className="container">
           <div className="row align-items-center">
             {/* Produk Image */}
@@ -95,7 +108,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Layanan Section */}
-      <section className="container">
+      <section ref={layananSection.ref} className={`container ${layananSection.isVisible ? "fade-in" : "fade-out"}`}>
         <div className="row">
           <div className="col-lg-4">
             <img

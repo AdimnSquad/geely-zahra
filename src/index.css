@@ -1,5 +1,3 @@
-
-
 /* Custom CSS */
 
 /* Swatches */
@@ -63,9 +61,20 @@
   background: #20b358;
 }
 .img-fixed {
-    width: 100%;
-    height: 300px;        /* atur tinggi sesuai selera, misal 250px atau 300px */
-    object-fit: cover;    /* crop gambar biar proporsional */
-    object-position: center;
-  }
+  width: 100%;
+  height: 300px; /* atur tinggi sesuai selera, misal 250px atau 300px */
+  object-fit: cover; /* crop gambar biar proporsional */
+  object-position: center;
+}
 
+.fade-out{
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in{
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
