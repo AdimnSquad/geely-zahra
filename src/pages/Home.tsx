@@ -8,6 +8,9 @@ const Home: React.FC = () => {
 
   const produkSection = useScrollFadeFallback();
   const layananSection = useScrollFadeFallback();
+  const modelSection = useScrollFadeFallback();
+  const testimoniSection = useScrollFadeFallback();
+  const videoSection = useScrollFadeFallback();
   return (
     <main>
       {/* Meta Data */}
@@ -161,7 +164,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* New Model section */}
-      <section className="bg-light py-5">
+      <section ref={modelSection.ref} className={`bg-light py-5 ${modelSection.isVisible ? "fade-in" : "fade-out"}`}>
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6">
@@ -180,7 +183,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Testimoni Section */}
-      <section className="container mt-5 mb-5">
+      <section ref={testimoniSection.ref} className={`container mt-5 mb-5 ${testimoniSection.isVisible ? "fade-in" : "fade-out"}`}>
         <div className="row align-items-center">
           <h2 className="text-center mb-5">Galery Testimoni</h2>
           <div className="col-lg-3 gap-3">
@@ -215,7 +218,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Video Section */}
-      <section className="container my-5">
+      <section ref={videoSection.ref} className={`container my-5 ${videoSection.isVisible ? "fade-in" : "fade-out"}`}>
         <div className="row justify-content-center">
           <div className="col-12 text-center mb-4">
             <h2 className="fw-bold">Video</h2>
