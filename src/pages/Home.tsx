@@ -13,10 +13,21 @@ const Home: React.FC = () => {
       {/* Meta Data */}
       <Helmet>
         <title>Geely Andalan - Home</title>
-        <meta name="description" content="Temukan mobil impian Anda dengan teknologi canggih dan desain modern dari Geely" />
-        <meta name="keywords" content="Geely, Mobil, SUV, Harga Mobil 2025, Dealer Geely" />
+        <meta name="description" content="Geely Andalan adalah dealer resmi mobil Geely di Indonesia. Temukan promo, harga terbaru, spesifikasi, dan layanan purna jual terbaik untuk mobil Geely Anda." />
+        <meta name="keywords" content="Geely Andalan, Dealer Geely, Mobil Geely Indonesia, Harga Mobil Geely, Promo Geely" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://geely-showroom-kemang.netlify.app/" />
+        {/* Open Graph (FB, LinkdIn) */}
+        <meta property="og:title" content="Geely Andalan - Dealer Mobil Geely Resmi" />
+        <meta property="og:description" content="Dealer resmi mobil Geely di Indonesia. Cek harga, promo, dan layanan terbaik di Geely Andalan." />
+        <meta property="og:url" content="https://geely-showroom-kemang.netlify.app/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://geely-showroom-kemang.netlify.app/image/download.jpg" />
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Geely Andalan - Dealer Mobil Geely Resmi" />
+        <meta name="twitter:description" content="Dealer resmi mobil Geely di Indonesia. Cek harga, promo, dan layanan terbaik di Geely Andalan." />
+        <meta name="twitter:image" content="https://geely-showroom-kemang.netlify.app/image/download.jpg" />
       </Helmet>
       {/* Section Hero */}
       <HeroSection />
