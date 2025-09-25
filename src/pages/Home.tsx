@@ -16,7 +16,7 @@ const Home: React.FC = () => {
         <meta name="description" content="Temukan mobil impian Anda dengan teknologi canggih dan desain modern dari Geely" />
         <meta name="keywords" content="Geely, Mobil, SUV, Harga Mobil 2025, Dealer Geely" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://namadomain.com/" />
+        <link rel="canonical" href="https://geely-showroom-kemang.netlify.app/" />
       </Helmet>
       {/* Section Hero */}
       <HeroSection />
