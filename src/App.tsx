@@ -9,6 +9,7 @@ import Booking from "./pages/Booking";
 import Kontak from "./pages/Kontak";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Details from "./pages/Details";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 
 const App: React.FC = () => {
@@ -23,6 +24,7 @@ const App: React.FC = () => {
         <Route path="/booking-service" element={<Booking />} />
         <Route path="/testimoni" element={<Testimoni />} />
         <Route path="/kontak" element={<Kontak />} />
+        <Route path="/detail/:slug" element={<Details />} />
       </Routes>
       <Footer />
       <WhatsAppFloat />

@@ -67,14 +67,30 @@
   object-position: center;
 }
 
-.fade-out{
+.fade-out {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.fade-in{
+.fade-in {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.swiper .card-img-top {
+  width: 100%;
+  height: 300px; /* bisa dinaikkan misalnya 350px/400px */
+  object-fit: cover; /* biar rapi, nggak gepeng */
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+}
+
+/* Bikin card full height biar simetris */
+.swiper .card {
+  height: 100%;
+}
+.active {
+  color: #000 !important;
 }
