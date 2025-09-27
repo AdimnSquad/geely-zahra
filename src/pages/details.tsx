@@ -124,7 +124,7 @@ const Details: React.FC = () => {
           <div className="row align-items-center">
             <div className="col-lg-12">
               <h6 className="text-center">Efficiency meets intelligent</h6>
-              <h3 className="text-center fw-bold">EM-i super hybrid</h3>
+              <h3 className="text-center fw-bold">{mobil.nama}</h3>
               <p className="lead fs-6 text-center">
                 EM-i or E-Motive intelligence is Geely's advanced hybrid
                 technology, combining the benefits of fuel and battery for
