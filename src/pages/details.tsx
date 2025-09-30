@@ -29,6 +29,11 @@ export interface Exterior {
   image: string;
 }
 
+export interface Interior {
+  name: string;
+  image: string;
+}
+
 interface Mobil {
   id_doc: string;
   nama: string;
@@ -36,6 +41,7 @@ interface Mobil {
   colors?: MobilColor[];
   harga?: HargaMobil[];
   exterior?: Exterior[];
+  interior?: Interior[];
 }
 
 const Details: React.FC = () => {
@@ -468,12 +474,12 @@ const Details: React.FC = () => {
                   >
                     {mobil.exterior && mobil.exterior.length > 0 ? (
                       mobil.exterior.map((item, index) => (
-                        <SwiperSlide key={item.name || index}>
+                        <SwiperSlide key={index}>
                           <div className="shadow border-0 text-center">
                             <img
                               src={item.image}
                               className="card-img-top"
-                              alt={item.name || `Exterior ${index + 1}`}
+                              alt={item.name}
                             />
                             <h6 className="fw-bold text-white mt-2">
                               {item.name}
@@ -515,45 +521,25 @@ const Details: React.FC = () => {
                     }}
                     className="interior-swiper"
                   >
-                    <SwiperSlide>
-                      <div className="border-0 text-center">
-                        <img
-                          src="/image/car/geely-starray-em-i/interior/interior-1-510x383.jpg"
-                          className="card-img-top"
-                          alt="Interior 1"
-                        />
-                        <h6 className="fw-bold text-white">Interior 1</h6>
-                        <p className="small text-white mb-0">
-                          Kabin luas premium
-                        </p>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="border-0 text-center">
-                        <img
-                          src="/image/car/geely-starray-em-i/interior/interior-2-510x383.jpg"
-                          className="card-img-top"
-                          alt="Interior 2"
-                        />
-                        <h6 className="fw-bold text-white">Interior 2</h6>
-                        <p className="small text-white mb-0">
-                          Dashboard digital
-                        </p>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="border-0 text-center">
-                        <img
-                          src="/image/car/geely-starray-em-i/interior/interior-3-510x334.jpg"
-                          className="card-img-top"
-                          alt="Interior 3"
-                        />
-                        <h6 className="fw-bold text-white">Interior 3</h6>
-                        <p className="small text-white mb-0">
-                          Kursi ergonomis kulit
-                        </p>
-                      </div>
-                    </SwiperSlide>
+                    {mobil.interior && mobil.interior.length > 0 ? (
+                      mobil.interior.map((item, index) => (
+                        <SwiperSlide key={index}>
+                          <div className="border-0 text-center">
+                            <img
+                              src={item.image}
+                              className="card-img-top"
+                              alt="Interior 1"
+                            />
+                            <h6 className="fw-bold text-white">{item.name}</h6>
+                            <p className="small text-white mb-0">
+                              Kabin luas premium
+                            </p>
+                          </div>
+                        </SwiperSlide>
+                      ))
+                    ) : (
+                      <p className="text-muted">Data Tidak ada</p>
+                    )}
                   </Swiper>
                 </div>
               </div>

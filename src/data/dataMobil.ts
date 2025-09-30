@@ -18,6 +18,11 @@ export interface Exterior {
   image: string;
 }
 
+export interface Interior {
+  name: string;
+  image: string;
+}
+
 export interface Mobil {
   id: number;
   id_doc: string; // id dokumen dari Firestore
@@ -29,6 +34,7 @@ export interface Mobil {
   deskripsi?: string;
   harga?: HargaMobil[];
   exterior?: Exterior[];
+  interior?: Interior[];
 }
 
 export const fetchMobils = async (): Promise<Mobil[]> => {
@@ -87,9 +93,10 @@ export const fetchMobilBySlug = async (slug: string): Promise<Mobil | null> => {
     if (querySnapshot.empty) return null;
 
     const docSnap = querySnapshot.docs[0];
-    const mobilData = docSnap.data() as Omit<Mobil, "id_doc" | "colors" | "exterior"> & {
+    const mobilData = docSnap.data() as Omit<Mobil, "id_doc" | "colors" | "exterior" | "interior"> & {
       colors?: { [key: string]: { hex: string; image: string } };
       exterior?: { name: string; images: string }[]; // langsung array
+      interior?: { name: string; images: string }[]; // langsung array
     };
 
     // colors
@@ -111,11 +118,20 @@ export const fetchMobilBySlug = async (slug: string): Promise<Mobil | null> => {
       }));
     }
 
+    let interiorArray: Interior[] = [];
+    if (mobilData.interior){
+      interiorArray = mobilData.interior.map((item) => ({
+        name: item.name,
+        image: item.images, // mapping "images" → "image"
+      }))
+    }
+
     return {
       ...mobilData,
       id_doc: docSnap.id,
       colors: colorsArray,
       exterior: exteriorArray,
+      interior: interiorArray,
     };
   } catch (error) {
     console.error("Error fetching mobil by slug: ", error);
