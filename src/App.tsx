@@ -10,7 +10,7 @@ import Kontak from "./pages/Kontak";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 // import Details from "./pages/details";
-import Details from "./pages/Details"
+import Details from "./pages/details"
 import WhatsAppFloat from "./components/WhatsAppFloat";
 
 const App: React.FC = () => {

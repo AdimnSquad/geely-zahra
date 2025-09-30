@@ -24,12 +24,18 @@ export interface HargaMobil {
   discount?: number;
 }
 
+export interface Exterior {
+  name: string;
+  image: string;
+}
+
 interface Mobil {
   id_doc: string;
   nama: string;
   deskripsi?: string;
   colors?: MobilColor[];
   harga?: HargaMobil[];
+  exterior?: Exterior[];
 }
 
 const Details: React.FC = () => {
@@ -460,45 +466,29 @@ const Details: React.FC = () => {
                     }}
                     className="exterior-swiper"
                   >
-                    <SwiperSlide>
-                      <div className="shadow border-0 text-center">
-                        <img
-                          src="./image/car/geely-starray-em-i/exterior/exterior-1-510x333.jpg"
-                          className="card-img-top"
-                          alt="Exterior 1"
-                        />
-                        <h6 className="fw-bold text-white">Exterior 1</h6>
-                        <p className="small text-white mb-0">
-                          Tampilan sporty modern
-                        </p>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="shadow border-0 text-center">
-                        <img
-                          src="./image/car/geely-starray-em-i/exterior/exterior-2-510x291.jpg"
-                          className="card-img-top"
-                          alt="Exterior 2"
-                        />
-                        <h6 className="fw-bold text-white">Exterior 2</h6>
-                        <p className="small text-white mb-0">
-                          Grill depan elegan
-                        </p>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="shadow border-0 text-center">
-                        <img
-                          src="./image/car/geely-starray-em-i/exterior/exterior-3-510x297.jpg"
-                          className="card-img-top"
-                          alt="Exterior 3"
-                        />
-                        <h6 className="fw-bold text-white">Exterior 3</h6>
-                        <p className="small text-white mb-0">
-                          Lampu LED futuristik
-                        </p>
-                      </div>
-                    </SwiperSlide>
+                    {mobil.exterior && mobil.exterior.length > 0 ? (
+                      mobil.exterior.map((item, index) => (
+                        <SwiperSlide key={item.name || index}>
+                          <div className="shadow border-0 text-center">
+                            <img
+                              src={item.image}
+                              className="card-img-top"
+                              alt={item.name || `Exterior ${index + 1}`}
+                            />
+                            <h6 className="fw-bold text-white mt-2">
+                              {item.name}
+                            </h6>
+                            <p className="small text-white mb-0">
+                              Tampilan sporty modern
+                            </p>
+                          </div>
+                        </SwiperSlide>
+                      ))
+                    ) : (
+                      <p className="text-white text-center">
+                        Belum ada gambar exterior tersedia.
+                      </p>
+                    )}
                   </Swiper>
                 </div>
               </div>

@@ -7,10 +7,15 @@ export interface MobilColor {
   image: string;
 }
 
-export interface HargaMobil{
+export interface HargaMobil {
   model: string;
   price: number;
   discount?: number;
+}
+
+export interface Exterior {
+  name: string;
+  image: string;
 }
 
 export interface Mobil {
@@ -23,6 +28,7 @@ export interface Mobil {
   image?: string[];
   deskripsi?: string;
   harga?: HargaMobil[];
+  exterior?: Exterior[];
 }
 
 export const fetchMobils = async (): Promise<Mobil[]> => {
@@ -31,11 +37,11 @@ export const fetchMobils = async (): Promise<Mobil[]> => {
     const data: Mobil[] = querySnapshot.docs.map((doc) => {
       const mobilData = doc.data() as Omit<Mobil, "id_doc" | "colors" | "harga"> & {
         colors?: { [key: string]: { hex: string; image: string } };
-        harga?: {[key: string]: { model: string; price: number, discount?: number } };
+        harga?: { [key: string]: { price: number; discount?: number } };
       };
 
-      let colorsArray: { name: string; hex: string; image: string }[] = [];
-
+      // colors
+      let colorsArray: MobilColor[] = [];
       if (mobilData.colors) {
         colorsArray = Object.entries(mobilData.colors).map(([name, val]) => ({
           name,
@@ -44,14 +50,14 @@ export const fetchMobils = async (): Promise<Mobil[]> => {
         }));
       }
 
-      let hargaArray: { model: string; price: number }[] = [];
+      // harga
+      let hargaArray: HargaMobil[] = [];
       if (mobilData.harga) {
-        hargaArray= Object.entries(mobilData.harga).map(([model, val]) => ({
-          // model: val.model,
+        hargaArray = Object.entries(mobilData.harga).map(([model, val]) => ({
           model,
           price: val.price,
           discount: val.discount,
-        }))
+        }));
       }
 
       return {
@@ -81,12 +87,13 @@ export const fetchMobilBySlug = async (slug: string): Promise<Mobil | null> => {
     if (querySnapshot.empty) return null;
 
     const docSnap = querySnapshot.docs[0];
-    const mobilData = docSnap.data() as Omit<Mobil, "id_doc" | "colors"> & {
+    const mobilData = docSnap.data() as Omit<Mobil, "id_doc" | "colors" | "exterior"> & {
       colors?: { [key: string]: { hex: string; image: string } };
+      exterior?: { name: string; images: string }[]; // langsung array
     };
 
-    let colorsArray: { name: string; hex: string; image: string }[] = [];
-
+    // colors
+    let colorsArray: MobilColor[] = [];
     if (mobilData.colors) {
       colorsArray = Object.entries(mobilData.colors).map(([name, val]) => ({
         name,
@@ -95,13 +102,24 @@ export const fetchMobilBySlug = async (slug: string): Promise<Mobil | null> => {
       }));
     }
 
+    // exterior (sudah array dari firestore)
+    let exteriorArray: Exterior[] = [];
+    if (mobilData.exterior) {
+      exteriorArray = mobilData.exterior.map((item) => ({
+        name: item.name,
+        image: item.images, // mapping "images" → "image"
+      }));
+    }
+
     return {
       ...mobilData,
       id_doc: docSnap.id,
       colors: colorsArray,
+      exterior: exteriorArray,
     };
   } catch (error) {
     console.error("Error fetching mobil by slug: ", error);
     return null;
   }
 };
+
