@@ -1,47 +1,129 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HeroSection from "../components/HeroSection";
 import SectionFooterImage from "../components/SectionFooterImage";
 import { useScrollFadeFallback } from "../hook/useScrollFade";
 import { Helmet } from "react-helmet-async";
+import { fetchLatestMobil } from "../data/dataMobil";
+
+export interface MobilColor {
+  name: string;
+  hex: string;
+  image: string;
+}
+
+export interface HargaMobil {
+  model: string;
+  price: number;
+  discount?: number;
+}
+
+export interface Exterior {
+  name: string;
+  image: string;
+}
+
+export interface Interior {
+  name: string;
+  image: string;
+}
+interface Mobil {
+  id_doc: string;
+  nama: string;
+  deskripsi?: string;
+  colors?: MobilColor[];
+  harga?: HargaMobil[];
+  exterior?: Exterior[];
+  interior?: Interior[];
+}
 
 const Home: React.FC = () => {
-
   const produkSection = useScrollFadeFallback();
   const layananSection = useScrollFadeFallback();
   const modelSection = useScrollFadeFallback();
   const testimoniSection = useScrollFadeFallback();
   const videoSection = useScrollFadeFallback();
+  const [carImage, setCarImage] = useState(
+    "/image/car/geely-starray-em-i/alphine-white23-1400x730.png"
+  );
+  const [mobil, setMobil] = useState<Mobil | null>(null);
+
+  useEffect(() => {
+    const getLatestMobil = async () => {
+      const latestMobil = await fetchLatestMobil();
+      setMobil(latestMobil);
+    };
+    getLatestMobil();
+  }, []);
+
+  const changeCarColor = (newSrc: string) => {
+    setCarImage(newSrc);
+  };
   return (
     <main>
       {/* Meta Data */}
       <Helmet>
         <title>Geely Andalan - Home</title>
-        <meta name="description" content="Geely Andalan adalah dealer resmi mobil Geely di Indonesia. Temukan promo, harga terbaru, spesifikasi, dan layanan purna jual terbaik untuk mobil Geely Anda." />
-        <meta name="keywords" content="Geely Andalan, Dealer Geely, Mobil Geely Indonesia, Harga Mobil Geely, Promo Geely" />
+        <meta
+          name="description"
+          content="Geely Andalan adalah dealer resmi mobil Geely di Indonesia. Temukan promo, harga terbaru, spesifikasi, dan layanan purna jual terbaik untuk mobil Geely Anda."
+        />
+        <meta
+          name="keywords"
+          content="Geely Andalan, Dealer Geely, Mobil Geely Indonesia, Harga Mobil Geely, Promo Geely"
+        />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://geely-showroom-kemang.netlify.app/" />
+        <link
+          rel="canonical"
+          href="https://geely-showroom-kemang.netlify.app/"
+        />
         {/* Open Graph (FB, LinkdIn) */}
-        <meta property="og:title" content="Geely Andalan - Dealer Mobil Geely Resmi" />
-        <meta property="og:description" content="Dealer resmi mobil Geely di Indonesia. Cek harga, promo, dan layanan terbaik di Geely Andalan." />
-        <meta property="og:url" content="https://geely-showroom-kemang.netlify.app/" />
+        <meta
+          property="og:title"
+          content="Geely Andalan - Dealer Mobil Geely Resmi"
+        />
+        <meta
+          property="og:description"
+          content="Dealer resmi mobil Geely di Indonesia. Cek harga, promo, dan layanan terbaik di Geely Andalan."
+        />
+        <meta
+          property="og:url"
+          content="https://geely-showroom-kemang.netlify.app/"
+        />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://geely-showroom-kemang.netlify.app/image/download.jpg" />
+        <meta
+          property="og:image"
+          content="https://geely-showroom-kemang.netlify.app/image/download.jpg"
+        />
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Geely Andalan - Dealer Mobil Geely Resmi" />
-        <meta name="twitter:description" content="Dealer resmi mobil Geely di Indonesia. Cek harga, promo, dan layanan terbaik di Geely Andalan." />
-        <meta name="twitter:image" content="https://geely-showroom-kemang.netlify.app/image/download.jpg" />
+        <meta
+          name="twitter:title"
+          content="Geely Andalan - Dealer Mobil Geely Resmi"
+        />
+        <meta
+          name="twitter:description"
+          content="Dealer resmi mobil Geely di Indonesia. Cek harga, promo, dan layanan terbaik di Geely Andalan."
+        />
+        <meta
+          name="twitter:image"
+          content="https://geely-showroom-kemang.netlify.app/image/download.jpg"
+        />
       </Helmet>
       {/* Section Hero */}
       <HeroSection />
       {/* Produk & Swatches section */}
-      <section ref={produkSection.ref} className={`bg-light py-5 ${produkSection.isVisible ? "fade-in" : "fade-out"}`}>
+      <section
+        ref={produkSection.ref}
+        className={`bg-light py-5 ${
+          produkSection.isVisible ? "fade-in" : "fade-out"
+        }`}
+      >
         <div className="container">
           <div className="row align-items-center">
             {/* Produk Image */}
             <div className="col-lg-6">
               <img
-                src="/image/download (1).jpg"
+                src={carImage}
                 alt="Produk Geely"
                 className="img-fluid rounded-3 shadow"
               />
@@ -51,78 +133,63 @@ const Home: React.FC = () => {
             <div className="col-lg-6">
               <h4 className="mb-3">Pilih Warna</h4>
               <div className="d-flex flex-wrap gap-3">
-                <span
-                  className="rounded-circle border me-2"
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    background: "#f5f5f5",
-                    display: "inline-block",
-                  }}
-                ></span>
-                <span
-                  className="rounded-circle border me-2"
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    background: "#e0e0e0",
-                    display: "inline-block",
-                  }}
-                ></span>
-                <span
-                  className="rounded-circle border me-2"
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    background: "#1c75bc",
-                    display: "inline-block",
-                  }}
-                ></span>
-                <span
-                  className="rounded-circle border me-2"
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    background: "#006400",
-                    display: "inline-block",
-                  }}
-                ></span>
-                <span
-                  className="rounded-circle border me-2"
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    background: "#333",
-                    display: "inline-block",
-                  }}
-                ></span>
+                {mobil?.colors?.map((color) => (
+                  <button
+                    className="btn rounded-circle border"
+                    key={color.name}
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      background: color.hex,
+                    }}
+                    onClick={() => changeCarColor(color.image)}
+                  ></button>
+                ))}
               </div>
             </div>
           </div>
           {/* Pricing Cards */}
           <div className="row mt-5">
-            <div className="col-lg-6 mb-4">
-              <div className="card shadow-sm p-4 text-center">
-                <h3 className="fw-bold">Max</h3>
-                <h2 className="text-dark">IDR 505.000.000*</h2>
-                <p>2025 Special Price</p>
-                <p className="text-muted">* OTR Jakarta</p>
+            {mobil?.harga?.map((item, index) => (
+              <div className="col-lg-6 mb-4" key={index}>
+                <div className="card shadow-sm p-4 text-center">
+                  {/* Tampilkan model sesuai data */}
+                  <h3 className="fw-bold">{item.model}</h3>
+
+                  {/* Jika ada discount, tampilkan harga coret + harga diskon */}
+                  {item.discount && item.discount > 0 ? (
+                    <div>
+                      <h4 className="text-muted text-decoration-line-through">
+                        {item.price.toLocaleString("id-ID")}
+                      </h4>
+                      <h2 className="text-danger fw-bold">
+                        {item.discount.toLocaleString("id-ID")}
+                      </h2>
+                    </div>
+                  ) : (
+                    <h2 className="text-dark">
+                      {item.price === 0
+                        ? "Pre Book Now"
+                        : item.price.toLocaleString("id-ID")}
+                    </h2>
+                  )}
+
+                  <p>2025 Special Price</p>
+                  <p className="text-muted">* OTR Jakarta</p>
+                </div>
               </div>
-            </div>
-            <div className="col-lg-6 mb-4">
-              <div className="card shadow-sm p-4 text-center">
-                <h3 className="fw-bold">Pro</h3>
-                <h2 className="text-dark">IDR 465.000.000*</h2>
-                <p>2025 Special Price</p>
-                <p className="text-muted">* OTR Jakarta</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Layanan Section */}
-      <section ref={layananSection.ref} className={`container ${layananSection.isVisible ? "fade-in" : "fade-out"}`}>
+      <section
+        ref={layananSection.ref}
+        className={`container ${
+          layananSection.isVisible ? "fade-in" : "fade-out"
+        }`}
+      >
         <div className="row">
           <div className="col-lg-4">
             <img
@@ -164,7 +231,12 @@ const Home: React.FC = () => {
       </section>
 
       {/* New Model section */}
-      <section ref={modelSection.ref} className={`bg-light py-5 ${modelSection.isVisible ? "fade-in" : "fade-out"}`}>
+      <section
+        ref={modelSection.ref}
+        className={`bg-light py-5 ${
+          modelSection.isVisible ? "fade-in" : "fade-out"
+        }`}
+      >
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6">
@@ -183,7 +255,12 @@ const Home: React.FC = () => {
       </section>
 
       {/* Testimoni Section */}
-      <section ref={testimoniSection.ref} className={`container mt-5 mb-5 ${testimoniSection.isVisible ? "fade-in" : "fade-out"}`}>
+      <section
+        ref={testimoniSection.ref}
+        className={`container mt-5 mb-5 ${
+          testimoniSection.isVisible ? "fade-in" : "fade-out"
+        }`}
+      >
         <div className="row align-items-center">
           <h2 className="text-center mb-5">Galery Testimoni</h2>
           <div className="col-lg-3 gap-3">
@@ -218,7 +295,12 @@ const Home: React.FC = () => {
       </section>
 
       {/* Video Section */}
-      <section ref={videoSection.ref} className={`container my-5 ${videoSection.isVisible ? "fade-in" : "fade-out"}`}>
+      <section
+        ref={videoSection.ref}
+        className={`container my-5 ${
+          videoSection.isVisible ? "fade-in" : "fade-out"
+        }`}
+      >
         <div className="row justify-content-center">
           <div className="col-12 text-center mb-4">
             <h2 className="fw-bold">Video</h2>

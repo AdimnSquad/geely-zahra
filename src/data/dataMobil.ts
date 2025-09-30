@@ -139,3 +139,104 @@ export const fetchMobilBySlug = async (slug: string): Promise<Mobil | null> => {
   }
 };
 
+export const fetchLatestMobil = async (): Promise<Mobil | null> => {
+  try {
+    const querySnapshot = await getDocs(collection(db, "mobil"));
+    if (querySnapshot.empty) return null;
+
+    // Ambil dokumen terakhir (anggap ini mobil terbaru)
+    const docSnap = querySnapshot.docs[querySnapshot.docs.length - 1];
+    const mobilData = docSnap.data() as Omit<
+      Mobil,
+      "id_doc" | "colors" | "exterior" | "interior" | "harga"
+    > & {
+      colors?: any; // bisa array atau object
+      exterior?: any;
+      interior?: any;
+      harga? : any;
+    };
+
+    // ✅ Colors bisa array atau object
+    let colorsArray: MobilColor[] = [];
+    if (mobilData.colors) {
+      if (Array.isArray(mobilData.colors)) {
+        colorsArray = mobilData.colors.map((item) => ({
+          name: item.name,
+          hex: item.hex,
+          image: item.image,
+        }));
+      } else {
+        colorsArray = Object.entries(mobilData.colors).map(([name, val]: any) => ({
+          name,
+          hex: val.hex,
+          image: val.image,
+        }));
+      }
+    }
+
+     let hargaArray: HargaMobil[] = [];
+if (mobilData.harga) {
+  if (Array.isArray(mobilData.harga)) {
+    // ✅ Kalau array langsung map
+    hargaArray = mobilData.harga.map((item) => ({
+      model: item.model,
+      price: item.price,
+      discount: item.discount ?? 0,
+    }));
+  } else {
+    // ✅ Kalau object (misalnya dari Firestore dengan key dinamis)
+    hargaArray = Object.entries(mobilData.harga).map(([model, val]: any) => ({
+      model,
+      price: val.price,
+      discount: val.discount ?? 0,
+    }));
+  }
+}
+
+
+    // ✅ Exterior bisa array atau object
+    let exteriorArray: Exterior[] = [];
+    if (mobilData.exterior) {
+      if (Array.isArray(mobilData.exterior)) {
+        exteriorArray = mobilData.exterior.map((item) => ({
+          name: item.name,
+          image: item.images,
+        }));
+      } else {
+        exteriorArray = Object.entries(mobilData.exterior).map(([name, val]: any) => ({
+          name,
+          image: val.images,
+        }));
+      }
+    }
+
+    // ✅ Interior bisa array atau object
+    let interiorArray: Interior[] = [];
+    if (mobilData.interior) {
+      if (Array.isArray(mobilData.interior)) {
+        interiorArray = mobilData.interior.map((item) => ({
+          name: item.name,
+          image: item.images,
+        }));
+      } else {
+        interiorArray = Object.entries(mobilData.interior).map(([name, val]: any) => ({
+          name,
+          image: val.images,
+        }));
+      }
+    }
+
+    return {
+      ...mobilData,
+      id_doc: docSnap.id,
+      colors: colorsArray,
+      exterior: exteriorArray,
+      interior: interiorArray,
+      harga: hargaArray
+    };
+  } catch (error) {
+    console.error("Error fetching latest mobil: ", error);
+    return null;
+  }
+};
+
