@@ -35,7 +35,7 @@ const Kontak: React.FC = () => {
                   <div>
                     <strong>Email</strong>
                     <br />
-                    <span>email@email.com</span>
+                    <span>geelyastorekemang@gmail.com</span>
                   </div>
                 </li>
               </ul>
