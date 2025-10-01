@@ -19,7 +19,7 @@ const Kontak: React.FC = () => {
                   <div>
                     <strong>Telpon</strong>
                     <br />
-                    <span>+62 881-2148-330</span>
+                    <span>+62 877-8724-1024</span>
                   </div>
                 </li>
                 <li className="mb-3 d-flex align-items-center">
@@ -27,7 +27,7 @@ const Kontak: React.FC = () => {
                   <div>
                     <strong>WhastApp</strong>
                     <br />
-                    <span>+62 881-2148-330</span>
+                    <span>+62 877-8724-1024</span>
                   </div>
                 </li>
                 <li className="mb-3 d-flex align-items-center">
