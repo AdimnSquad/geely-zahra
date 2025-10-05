@@ -4,6 +4,13 @@ import SectionFooterImage from "../components/SectionFooterImage";
 import { useScrollFadeFallback } from "../hook/useScrollFade";
 import { Helmet } from "react-helmet-async";
 import { fetchLatestMobil } from "../data/dataMobil";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export interface MobilColor {
   name: string;
@@ -263,34 +270,57 @@ const Home: React.FC = () => {
       >
         <div className="row align-items-center">
           <h2 className="text-center mb-5">Galery Testimoni</h2>
-          <div className="col-lg-3 gap-3">
-            <img
-              src="https://geelyandalan.co.id/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-25-at-11.16.28-600x800.jpeg"
-              alt=""
-              className="img-fluid rounded-3 shadow"
-            />
-          </div>
-          <div className="col-lg-3 gap-3">
-            <img
-              src="https://geelyandalan.co.id/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-25-at-11.16.28-600x800.jpeg"
-              alt=""
-              className="img-fluid rounded-3 shadow"
-            />
-          </div>
-          <div className="col-lg-3 gap-3">
-            <img
-              src="https://geelyandalan.co.id/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-25-at-11.16.28-600x800.jpeg"
-              alt=""
-              className="img-fluid rounded-3 shadow"
-            />
-          </div>
-          <div className="col-lg-3 gap-3">
-            <img
-              src="https://geelyandalan.co.id/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-25-at-11.16.28-600x800.jpeg"
-              alt=""
-              className="img-fluid rounded-3 shadow"
-            />
-          </div>
+          <Swiper
+            modules={[Navigation, Pagination]}
+            spaceBetween={20}
+            loop={true}
+            grabCursor={true}
+            pagination={{ clickable: true }}
+            navigation={true}
+            breakpoints={{
+              0: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              992: { slidesPerView: 3 },
+            }}
+
+          >
+            <SwiperSlide>
+              <div className="gap-3">
+                <img
+                  src="/image/testimonial/WhatsApp-Image-2025-08-25-at-11.16.28-1.jpeg"
+                  alt=""
+                  className="img-fixed rounded-top"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="gap-3">
+                <img
+                  src="/image/testimonial/WhatsApp-Image-2025-08-25-at-11.16.28-510x680.jpeg"
+                  alt=""
+                  className="img-fixed rounded-top"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="gap-3">
+                <img
+                  src="/image/testimonial/WhatsApp-Image-2025-08-25-at-11.16.29.jpeg"
+                  alt=""
+                  className="img-fixed rounded-top"
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="gap-3">
+              <img
+                src="/image/testimonial/testimoni1.jpg"
+                alt=""
+                className="img-fixed rounded-top"
+              />
+            </div>
+            </SwiperSlide>
+          </Swiper>
         </div>
       </section>
 

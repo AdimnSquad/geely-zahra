@@ -27,6 +27,9 @@ const Testimoni: React.FC = () => {
                      <div className="col-lg-3">
                         <img src="/image/testimonial/WhatsApp-Image-2025-09-01-at-19.13.00-711x400.jpeg" alt="" className="img-fixed rounded-top" />
                     </div>
+                     <div className="col-lg-3">
+                        <img src="/image/testimonial/testimoni1.jpg" alt="" className="img-fixed rounded-top" />
+                    </div>
                    </div>
                 </div>
             </section>
